@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../dist/mediator.min.js"></script>
+</head>
+<body>
+
+<button>PUB EVENT</button>
+<br>
+<br>
+<div class="notifier">
+    no event
+</div>
+
+<script>
+    
+    var button = document.body.querySelector('button');
+    var notifier = document.body.querySelector('.notifier');
+    var count = 0;
+
+    button.addEventListener('click', function () {
+        Mediator.pub('button:clicked', button)
+    });
+
+    Mediator.sub('button:clicked', function (e, data) {
+        notifier.textContent = e + ' ' + (count++) + ' times'
+    })
+
+</script>
+
+</body>
+</html>
