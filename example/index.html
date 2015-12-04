@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../dist/mediator.min.js"></script>
+    <script src="../dist/mediator.js"></script>
 </head>
 <body>
 
-<button>PUB EVENT</button>
+<button class="pub">PUB EVENT</button>
+<button class="unsub">UNSUB FROM EVENT</button>
 <br>
 <br>
 <div class="notifier">
@@ -16,17 +17,28 @@
 
 <script>
     
-    var button = document.body.querySelector('button');
+    var pub = document.body.querySelector('.pub');
+    var unsub = document.body.querySelector('.unsub');
     var notifier = document.body.querySelector('.notifier');
     var count = 0;
 
-    button.addEventListener('click', function () {
-        Mediator.pub('button:clicked', button)
+    pub.addEventListener('click', function () {
+        Mediator.pub('button:clicked', pub)
+    });
+    
+    unsub.addEventListener('click', function () {
+        subListener.unsub()
+    })
+
+    var subListener = Mediator.sub('button:clicked', function (e, data) {
+        notifier.textContent = e + ' ' + (count++) + ' times'
     });
 
-    Mediator.sub('button:clicked', function (e, data) {
-        notifier.textContent = e + ' ' + (count++) + ' times'
-    })
+
+    
+    
+
+
 
 </script>
 
