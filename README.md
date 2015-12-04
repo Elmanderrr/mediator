@@ -15,7 +15,7 @@ Mediator.pub('event:raise', {evt_dscr:'Event was raised'});
 ```
 
 #### Unsubscribe
-
+For unsubscribe from any event use it in this style
 
 ```javascript
 var listener = Mediator.sub('event:raise', function (e, data) {
